@@ -27,7 +27,7 @@ type dbConfig struct {
 	DbUser     string `json:"db_user" env:"DB_USER"`
 	DbPassword string `json:"db_password" env:"DB_PASSWORD"`
 	DbName     string `json:"db_name" env:"DB_NAME"`
-	DbSslMode  string `json:"db_sll_mode" env:"DB_SSL_MODE"`
+	DbSslMode  string `json:"db_sll_mode" env:"DB_SLL_MODE"`
 	DbTimeZone string `json:"db_time_zone" env:"DB_TIME_ZONE"`
 }
 type httpConfig struct {
@@ -52,7 +52,7 @@ func GetConfig() (*Config, error) {
 		DbUser:     os.Getenv("DB_USER"),
 		DbPassword: os.Getenv("DB_PASSWORD"),
 		DbName:     os.Getenv("DB_NAME"),
-		DbSslMode:  os.Getenv("DB_SSL_MODE"),
+		DbSslMode:  os.Getenv("DB_SLL_MODE"),
 		DbTimeZone: os.Getenv("DB_TIME_ZONE"),
 	}
 
