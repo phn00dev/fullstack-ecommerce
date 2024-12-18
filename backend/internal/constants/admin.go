@@ -1,1 +1,11 @@
 package constants
+
+type ADMIN_ROLE string
+
+const (
+	SUPER_ADMIN ADMIN_ROLE = "SUPER_ADMIN"
+	ADMIN       ADMIN_ROLE = "ADMIN"
+	MODERATOR   ADMIN_ROLE = "MODERATOR"
+	EDITOR      ADMIN_ROLE = "EDITOR"
+	WRITER      ADMIN_ROLE = "WRITER"
+)
