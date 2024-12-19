@@ -5,4 +5,5 @@ type STATUS string
 const (
 	ACTIVE  STATUS = "ACTIVE"
 	PASSIVE STATUS = "PASSIVE"
+	DRAFT   STATUS = "DRAFT"
 )

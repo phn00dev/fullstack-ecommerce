@@ -2,18 +2,31 @@ package routes
 
 import (
 	adminConstructor "eCommerce/internal/domain/admin/constructor"
+	brandConstructor "eCommerce/internal/domain/brand/constructor"
 	sectionConstructor "eCommerce/internal/domain/section/constructor"
 	"github.com/gofiber/fiber/v2"
 )
 
 func AdminRoutes(app *fiber.App) {
 	adminApiV1 := app.Group("/api/admin")
+
+	// admin auth routes
+
+	// admin crud routes
 	adminsRoute := adminApiV1.Group("/admins")
 	adminsRoute.Get("/", adminConstructor.AdminHandler.GetAll)
 	adminsRoute.Get("/:adminID", adminConstructor.AdminHandler.GetOne)
 	adminsRoute.Post("/", adminConstructor.AdminHandler.Create)
 	adminsRoute.Put("/:adminID", adminConstructor.AdminHandler.Update)
 	adminsRoute.Delete("/:adminID", adminConstructor.AdminHandler.Delete)
+
+	// brand routes
+	brandRoute := adminApiV1.Group("/brands")
+	brandRoute.Get("/", brandConstructor.BrandHandler.GetAll)
+	brandRoute.Get("/:brandID", brandConstructor.BrandHandler.GetOne)
+	brandRoute.Post("/", brandConstructor.BrandHandler.Create)
+	brandRoute.Put("/:brandID", brandConstructor.BrandHandler.Update)
+	brandRoute.Delete("/:brandID", brandConstructor.BrandHandler.Delete)
 
 	// section routes
 	sectionRoute := adminApiV1.Group("/sections")

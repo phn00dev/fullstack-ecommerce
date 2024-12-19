@@ -28,7 +28,7 @@ func (s sectionServiceImp) GetAllSections() ([]dto.SectionResponse, error) {
 	return sectionResponses, nil
 }
 
-func (s sectionServiceImp) GetOneSectionById(sectionId int) (*dto.SectionResponse, error) {
+func (s sectionServiceImp) GetOneSectionByID(sectionId int) (*dto.SectionResponse, error) {
 	section, err := s.sectionRepo.GetOneById(sectionId)
 	if err != nil {
 		return nil, err
