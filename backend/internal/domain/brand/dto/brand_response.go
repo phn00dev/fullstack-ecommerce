@@ -7,7 +7,9 @@ import (
 
 type BrandResponse struct {
 	ID          uint             `json:"id"`
-	BrandName   string           `json:"brand_name"`
+	BrandNameTk string           `json:"brand_name_tk"`
+	BrandNameRu string           `json:"brand_name_ru"`
+	BrandNameEn string           `json:"brand_name_en"`
 	BrandSlug   string           `json:"brand_slug"`
 	BrandIcon   string           `json:"brand_icon"`
 	BrandStatus constants.STATUS `json:"brand_status"`
@@ -27,7 +29,9 @@ func GetAllBrandResponse(brands []models.Brand) []BrandResponse {
 func GetBrandResponse(brand models.Brand) BrandResponse {
 	return BrandResponse{
 		ID:          brand.ID,
-		BrandName:   brand.BrandName,
+		BrandNameTk: brand.BrandNameTk,
+		BrandNameRu: brand.BrandNameRu,
+		BrandNameEn: brand.BrandNameEn,
 		BrandSlug:   brand.BrandSlug,
 		BrandIcon:   brand.BrandIcon,
 		BrandStatus: brand.BrandStatus,

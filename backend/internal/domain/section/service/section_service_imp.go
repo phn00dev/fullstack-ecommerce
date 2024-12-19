@@ -7,6 +7,7 @@ import (
 	"eCommerce/internal/utils/images"
 	"eCommerce/pkg/config"
 	"errors"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gosimple/slug"
 )
@@ -38,12 +39,32 @@ func (s sectionServiceImp) GetOneSectionByID(sectionId int) (*dto.SectionRespons
 }
 
 func (s sectionServiceImp) CreateSection(ctx *fiber.Ctx, config config.Config, createRequest dto.CreateSectionRequest) error {
-	section, err := s.sectionRepo.GetOneBySectionName(createRequest.SectionName)
+
+	// check section name tk
+	checkSectionNameTk, err := s.sectionRepo.CheckSectionNameTk(createRequest.SectionNameTk)
 	if err != nil {
-		return errors.New("Section name already exists")
+		return fmt.Errorf("error checking section name TK: %w", err)
 	}
-	if section.ID == 0 {
-		return errors.New("Section name already exists")
+	if checkSectionNameTk {
+		return errors.New("section name TK already exists")
+	}
+
+	// check section name ru
+	checkSectionNameRu, err := s.sectionRepo.CheckSectionNameTk(createRequest.SectionNameTk)
+	if err != nil {
+		return fmt.Errorf("error checking section name Ru: %w", err)
+	}
+	if checkSectionNameRu {
+		return errors.New("section name Ru already exists")
+	}
+
+	// check section name en
+	checkSectionNameEn, err := s.sectionRepo.CheckSectionNameTk(createRequest.SectionNameTk)
+	if err != nil {
+		return fmt.Errorf("error checking section name En: %w", err)
+	}
+	if checkSectionNameEn {
+		return errors.New("section name En already exists")
 	}
 
 	// upload section icon image
@@ -53,15 +74,16 @@ func (s sectionServiceImp) CreateSection(ctx *fiber.Ctx, config config.Config, c
 	}
 
 	newSection := models.Section{
-		SectionName:   createRequest.SectionIcon,
-		SectionSlug:   slug.Make(createRequest.SectionName),
+		SectionNameTk: createRequest.SectionNameTk,
+		SectionNameRu: createRequest.SectionNameRu,
+		SectionNameEn: createRequest.SectionNameEn,
+		SectionSlug:   slug.Make(createRequest.SectionNameEn),
 		SectionStatus: createRequest.SectionStatus,
 		SectionIcon:   *sectionIconPath,
 	}
 
-	if err := s.sectionRepo.Create(&newSection); err != nil {
-		// eger-de section doretmekde error bar bolsa onda upload edilen section icon image delete edilmeli
-		if err := images.DeleteFile(*sectionIconPath); err != nil {
+	if err = s.sectionRepo.Create(&newSection); err != nil {
+		if err = images.DeleteFile(*sectionIconPath); err != nil {
 			return errors.New("Something wrong! Failed to delete section icon")
 		}
 		return err
@@ -93,7 +115,9 @@ func (s sectionServiceImp) UpdateSection(ctx *fiber.Ctx, config config.Config, s
 		}
 		updateRequest.SectionIcon = *sectionIconPath
 	}
-	section.SectionName = updateRequest.SectionName
+	section.SectionNameTk = updateRequest.SectionNameTk
+	section.SectionNameRu = updateRequest.SectionNameRu
+	section.SectionNameEn = updateRequest.SectionNameEn
 	section.SectionStatus = updateRequest.SectionStatus
 	return s.sectionRepo.Update(sectionID, section)
 }

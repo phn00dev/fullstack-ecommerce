@@ -6,7 +6,9 @@ import (
 
 type SectionResponse struct {
 	ID            uint64 `json:"id"`
-	SectionName   string `json:"section_name"`
+	SectionNameTk string `json:"section_name_tk"`
+	SectionNameRu string `json:"section_name_ru"`
+	SectionNameEn string `json:"section_name_en"`
 	SectionSlug   string `json:"section_slug"`
 	SectionStatus string `json:"section_status"`
 	SectionIcon   string `json:"section_icon"`
@@ -26,7 +28,9 @@ func GetAllSectionResponse(sections []models.Section) []SectionResponse {
 func GetOneSectionResponse(section models.Section) SectionResponse {
 	return SectionResponse{
 		ID:            section.ID,
-		SectionName:   section.SectionName,
+		SectionNameTk: section.SectionNameTk,
+		SectionNameRu: section.SectionNameRu,
+		SectionNameEn: section.SectionNameEn,
 		SectionSlug:   section.SectionSlug,
 		SectionStatus: section.SectionStatus,
 		SectionIcon:   section.SectionIcon,

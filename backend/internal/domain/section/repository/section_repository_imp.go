@@ -48,3 +48,36 @@ func (s sectionRepositoryImp) GetOneBySectionName(sectionName string) (*models.S
 	}
 	return &section, nil
 }
+
+func (s sectionRepositoryImp) CheckSectionNameTk(sectionNameTk string) (bool, error) {
+	err := s.db.Where("section_name_tk=?", sectionNameTk).First(&models.Section{}).Error
+	if err == gorm.ErrRecordNotFound {
+		return false, nil
+	}
+	if err != nil {
+		return true, err
+	}
+	return true, nil
+}
+
+func (s sectionRepositoryImp) CheckSectionNameRu(sectionNameRu string) (bool, error) {
+	err := s.db.Where("section_name_ru=?", sectionNameRu).First(&models.Section{}).Error
+	if err == gorm.ErrRecordNotFound {
+		return false, nil
+	}
+	if err != nil {
+		return true, err
+	}
+	return true, nil
+}
+
+func (s sectionRepositoryImp) CheckSectionNameEn(sectionNameEn string) (bool, error) {
+	err := s.db.Where("section_name_en=?", sectionNameEn).First(&models.Section{}).Error
+	if err == gorm.ErrRecordNotFound {
+		return false, nil
+	}
+	if err != nil {
+		return true, err
+	}
+	return true, nil
+}

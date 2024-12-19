@@ -12,4 +12,7 @@ type SectionRepository interface {
 	// helper functions
 
 	GetOneBySectionName(sectionName string) (*models.Section, error)
+	CheckSectionNameTk(sectionNameTk string) (bool, error)
+	CheckSectionNameRu(sectionNameRu string) (bool, error)
+	CheckSectionNameEn(sectionNameEn string) (bool, error)
 }

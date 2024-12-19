@@ -48,3 +48,37 @@ func (b brandRepositoryImp) GetOneBrandByBrandName(brandName string) (models.Bra
 	}
 	return brand, nil
 }
+
+func (b brandRepositoryImp) CheckBrandNameTk(brandNameTk string) (bool, error) {
+	err := b.db.Where("brand_name_tk=?", brandNameTk).First(&models.Brand{}).Error
+	if err == gorm.ErrRecordNotFound {
+		return false, nil
+	}
+	if err != nil {
+		return true, err
+	}
+	return true, nil
+}
+
+func (b brandRepositoryImp) CheckBrandNameRu(brandNameRu string) (bool, error) {
+	err := b.db.Where("brand_name_ru=?", brandNameRu).First(&models.Brand{}).Error
+	if err == gorm.ErrRecordNotFound {
+		return false, nil
+	}
+	if err != nil {
+		return true, err
+	}
+	return true, nil
+}
+
+func (b brandRepositoryImp) CheckBrandNameEn(brandNameEn string) (bool, error) {
+	err := b.db.Where("brand_name_en=?", brandNameEn).First(&models.Brand{}).Error
+
+	if err == gorm.ErrRecordNotFound {
+		return false, nil
+	}
+	if err != nil {
+		return true, err
+	}
+	return true, nil
+}

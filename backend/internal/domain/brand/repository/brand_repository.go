@@ -12,4 +12,7 @@ type BrandRepository interface {
 	// helper functions
 
 	GetOneBrandByBrandName(brandName string) (models.Brand, error)
+	CheckBrandNameTk(brandNameTk string) (bool, error)
+	CheckBrandNameRu(brandNameRu string) (bool, error)
+	CheckBrandNameEn(brandNameEn string) (bool, error)
 }
