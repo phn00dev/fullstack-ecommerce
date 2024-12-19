@@ -13,6 +13,8 @@ type Category struct {
 	CategorySlug   string           `json:"category_slug"`
 	CategoryIcon   string           `json:"category_icon"`
 	CategoryStatus constants.STATUS `json:"category_status"`
+	SectionID      uint             `json:"section_id"`
+	Section        Section          `json:"section"`
 	CreatedAt      time.Time        `json:"created_at"`
 	UpdatedAt      time.Time        `json:"updated_at"`
 	DeletedAt      time.Time        `json:"deleted_at"`

@@ -2,6 +2,7 @@ package main
 
 import (
 	"eCommerce/internal/app"
+	"eCommerce/internal/setup/constructor"
 	"fmt"
 	"log"
 )
@@ -13,6 +14,7 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+	constructor.Build(*getDependencies)
 	runServer := fmt.Sprintf("%s:%s",
 		getDependencies.Config.HttpConfig.HttpHost,
 		getDependencies.Config.HttpConfig.HttpPort)

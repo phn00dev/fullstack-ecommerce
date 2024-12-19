@@ -1,6 +1,7 @@
 package app
 
 import (
+	"eCommerce/internal/setup/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"time"
@@ -30,6 +31,8 @@ func NewApp(dependencies *Dependencies) (httpServer *fiber.App) {
 		AllowMethods: "GET,POST,HEAD,PUT,DELETE,PATCH",
 	}))
 	// get routes
-
+	routes.UserRoutes(httpServer)
+	routes.AdminRoutes(httpServer)
+	routes.StaticRoutes(httpServer, dependencies.Config)
 	return httpServer
 }

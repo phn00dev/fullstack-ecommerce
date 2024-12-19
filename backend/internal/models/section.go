@@ -3,7 +3,7 @@ package models
 import "time"
 
 type Section struct {
-	ID            uint64    `json:"id"`
+	ID            uint      `json:"id"`
 	SectionNameTk string    `json:"section_name_tk"`
 	SectionNameRu string    `json:"section_name_ru"`
 	SectionNameEn string    `json:"section_name_en"`
