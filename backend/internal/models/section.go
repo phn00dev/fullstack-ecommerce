@@ -4,7 +4,9 @@ import "time"
 
 type Section struct {
 	ID            uint64    `json:"id"`
-	SectionName   string    `json:"section_name"`
+	SectionNameTk string    `json:"section_name_tk"`
+	SectionNameRu string    `json:"section_name_ru"`
+	SectionNameEn string    `json:"section_name_en"`
 	SectionSlug   string    `json:"section_slug"`
 	SectionStatus string    `json:"section_status"`
 	SectionIcon   string    `json:"section_icon"`

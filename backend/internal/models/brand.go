@@ -7,7 +7,9 @@ import (
 
 type Brand struct {
 	ID          uint             `json:"id"`
-	BrandName   string           `json:"brand_name"`
+	BrandNameTk string           `json:"brand_name_tk"`
+	BrandNameRu string           `json:"brand_name_ru"`
+	BrandNameEn string           `json:"brand_name_en"`
 	BrandSlug   string           `json:"brand_slug"`
 	BrandIcon   string           `json:"brand_icon"`
 	BrandStatus constants.STATUS `json:"brand_status"`
