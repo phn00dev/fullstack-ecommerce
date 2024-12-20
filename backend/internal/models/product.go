@@ -25,11 +25,11 @@ type Product struct {
 	ProductMainImageOne       string           `json:"product_main_image_one"`
 	ProductMainImageTwo       string           `json:"product_main_image_two"`
 	ProductStatus             constants.STATUS `json:"product_status"`
-	SectionID                 int              `json:"section_id"`
+	SectionID                 uint             `json:"section_id"`
 	Section                   Section          `json:"section"`
-	CategoryID                int              `json:"category_id"`
+	CategoryID                uint             `json:"category_id"`
 	Category                  Category         `json:"category"`
-	BrandID                   int              `json:"brand_id"`
+	BrandID                   uint             `json:"brand_id"`
 	Brand                     Brand            `json:"brand"`
 	CreatedAt                 time.Time        `json:"created_at"`
 	UpdatedAt                 time.Time        `json:"updated_at"`

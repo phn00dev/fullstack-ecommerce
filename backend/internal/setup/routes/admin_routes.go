@@ -5,6 +5,7 @@ import (
 	bannerConstructor "eCommerce/internal/domain/banner/constructor"
 	brandConstructor "eCommerce/internal/domain/brand/constructor"
 	categoryConsturtor "eCommerce/internal/domain/category/consturtor"
+	productConstructor "eCommerce/internal/domain/product/constructor"
 	sectionConstructor "eCommerce/internal/domain/section/constructor"
 	"github.com/gofiber/fiber/v2"
 )
@@ -54,5 +55,13 @@ func AdminRoutes(app *fiber.App) {
 	categoryRoute.Post("/", categoryConsturtor.CategoryHandler.Create)
 	categoryRoute.Put("/:categoryID", categoryConsturtor.CategoryHandler.Update)
 	categoryRoute.Delete("/:categoryID", categoryConsturtor.CategoryHandler.Delete)
+
+	//  product routes
+	productRoute := adminApiV1.Group("/products")
+	productRoute.Get("/", productConstructor.ProductHandler.GetAll)
+	productRoute.Get("/:productID", productConstructor.ProductHandler.GetOne)
+	productRoute.Post("/", productConstructor.ProductHandler.Create)
+	productRoute.Put("/:productID", productConstructor.ProductHandler.Update)
+	productRoute.Delete("/:productID", productConstructor.ProductHandler.Delete)
 
 }
